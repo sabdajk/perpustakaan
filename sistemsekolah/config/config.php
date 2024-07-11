@@ -227,14 +227,14 @@ function pinjamBuku($dataBuku) {
        return 0;
     }
   }
-  // // cek batas user meminjam buku berdasarkan nisn
-  // $nisnResult = mysqli_query($connection, "SELECT nisn FROM peminjaman WHERE nisn = $nisn");
-  // if(mysqli_fetch_assoc($nisnResult)) {
-  //   echo "<script>
-  //   alert('Anda sudah meminjam buku, Harap kembalikan dahulu buku yg anda pinjam!');
-  //   </script>";
-  //   return 0;
-  // }
+  // cek batas user meminjam buku berdasarkan nisn
+  $nisnResult = mysqli_query($connection, "SELECT nisn FROM peminjaman WHERE nisn = $nisn");
+  if(mysqli_fetch_assoc($nisnResult)) {
+    echo "<script>
+    alert('Anda sudah meminjam buku, Harap kembalikan dahulu buku yg anda pinjam!');
+    </script>";
+    return 0;
+  }
   
   $queryPinjam = "INSERT INTO peminjaman VALUES(null, '$idBuku', $nisn, $idAdmin, '$tglPinjam', '$tglKembali')";
   mysqli_query($connection, $queryPinjam);
