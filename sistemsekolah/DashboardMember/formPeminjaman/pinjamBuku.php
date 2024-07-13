@@ -208,13 +208,18 @@ if(isset($_POST["pinjam"])) {
       }
 
       function validateForm() {
-        const adminSelect = document.getElementById("adminSelect");
-        if (adminSelect.value === "") {
-          alert("Harap pilih admin");
-          return false;
-        }
-        return true;
+      const adminSelect = document.getElementById("adminSelect");
+      const tglPeminjaman = document.getElementById("tgl_peminjaman").value;
+      if (adminSelect.value === "") {
+        alert("Harap pilih admin");
+        return false;
       }
+      if (tglPeminjaman === "") {
+        alert("Mohon pilih tanggal terlebih dahulu");
+        return false;
+      }
+      return true;
+    }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

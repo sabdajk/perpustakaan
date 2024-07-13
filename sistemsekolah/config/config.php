@@ -96,32 +96,25 @@ function upload() {
 
 // MENAMPILKAN SESUATU SESUAI DENGAN INPUTAN USER PADA * SEARCH ENGINE *
 function search($keyword) {
+  global $connection;
   // search data buku
   $querySearch = "SELECT * FROM buku 
   WHERE
   judul LIKE '%$keyword%' OR
-  kategori LIKE '%$keyword%'
-  ";
-  return queryReadData($querySearch);
+  kategori LIKE '%$keyword%'";
   
-  // search data pengembalian || member
-  $dataPengembalian = "SELECT * FROM pengembalian 
-  WHERE 
-  id_pengembalian '%$keyword%' OR
-  id_buku LIKE '%$keyword%' OR
-  judul LIKE '%$keyword%' OR
-  kategori LIKE '%$keyword%' OR
-  nisn LIKE '%$keyword%' OR
-  nama LIKE '%$keyword%' OR
-  nama_admin LIKE '%$keyword%' OR
-  tgl_pengembalian LIKE '%$keyword%' OR
-  keterlambatan LIKE '%$keyword%' OR
-  denda LIKE '%$keyword%'";
-  return queryReadData($dataPengembalian);
+  $result = mysqli_query($connection, $querySearch);
+  $items = [];
+  while($item = mysqli_fetch_assoc($result)) {
+    updateBookPopularity($item["id_buku"]); // Update popularitas buku
+    $items[] = $item;
+  }
+  return $items;
 }
 
+
 function searchMember ($keyword) {
-     // search member terdaftar || admin
+  // search member terdaftar || admin
    $searchMember = "SELECT * FROM member WHERE 
    nisn LIKE '%$keyword%' OR 
    kode_member LIKE '%$keyword%' OR
@@ -301,6 +294,19 @@ function getBooksCloseToDueDate($nisn) {
   return $books;
 }
 
+// Update buku popularitas
+function updateBookPopularity($idBuku) {
+  global $connection;
+  $queryUpdatePopularity = "UPDATE buku SET popularity = popularity + 1 WHERE id_buku = '$idBuku'";
+  mysqli_query($connection, $queryUpdatePopularity);
+}
+
+// Function to get popular books
+function getPopularBooks() {
+  global $connection;
+  $queryGetPopularBooks = "SELECT * FROM buku WHERE popularity > 5 ORDER BY popularity DESC LIMIT 10";
+  return queryReadData($queryGetPopularBooks);
+}
 
 
 // === FUNCTION KHUSUS MEMBER END ===

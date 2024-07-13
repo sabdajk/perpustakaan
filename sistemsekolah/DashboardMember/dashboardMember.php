@@ -53,18 +53,6 @@ $booksCloseToDueDate = getBooksCloseToDueDate($_SESSION['member']['nisn']);
                 </li>
             </ul>
         </div>
-
-        <?php if (count($booksCloseToDueDate) > 0): ?>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Pengingat!</strong> Anda memiliki buku yang mendekati tenggat waktu pengembalian:
-            <ul>
-                <?php foreach ($booksCloseToDueDate as $book): ?>
-                <li><?php echo $book['judul'] . ' - Tanggal Pengembalian: ' . $book['tgl_pengembalian']; ?></li>
-                <?php endforeach; ?>
-            </ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php endif; ?>
     </div>
 </nav>
 
@@ -84,7 +72,17 @@ $booksCloseToDueDate = getBooksCloseToDueDate($_SESSION['member']['nisn']);
 
     <h1 class="mt-5 fw-bold">Layar Utama - <span class="fs-4 text-secondary"><?php echo $day . " " . $dayOfMonth . " " . " " . $month . " " . $year; ?></span></h1>
     <div class="alert alert-success" role="alert">Selamat datang - <span class="text-capitalize fw-bold"><?php echo $_SESSION['member']['nama']; ?></span> di layar utama perpustakaan</div>
-
+    <?php if (count($booksCloseToDueDate) > 0): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Pengingat!</strong> Anda memiliki buku yang mendekati tenggat waktu pengembalian:
+            <ul>
+                <?php foreach ($booksCloseToDueDate as $book): ?>
+                <li><?php echo $book['judul'] . ' - Tanggal Pengembalian: ' . $book['tgl_pengembalian']; ?></li>
+                <?php endforeach; ?>
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php endif; ?>
     <div class="mt-3 p-3">
         <div class="mt-2 mb-4">
             <h3 class="mb-3">Layanan Perpustakaan yang tersedia</h3>
