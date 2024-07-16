@@ -26,6 +26,10 @@ if(isset($_POST["search"]) ) {
       justify-content: center;
       gap: 1.5rem;
     }
+    .search-bar {
+      max-width: 600px;
+      margin: 20px auto;
+    }
   </style>
   <body>
   <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
@@ -52,12 +56,12 @@ if(isset($_POST["search"]) ) {
     
 <div class="p-4 mt-4">
       <!--search engine --->
-     <form action="" method="post" class="mt-5">
-       <div class="input-group d-flex justify-content-end mb-3">
-         <input class="border p-2 rounded rounded-end-0 bg-tertiary" type="text" name="keyword" id="keyword" placeholder="cari data buku...">
-         <button class="border border-start-0 bg-light rounded rounded-start-0" type="submit" name="search"><i class="fa-solid fa-magnifying-glass"></i></button>
-       </div>
-      </form>
+      <form action="" method="post" class="mt-5 search-bar">
+      <div class="input-group">
+        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Cari judul atau kategori buku...">
+        <button class="btn btn-primary" type="submit" name="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </form>
        
        <!--Card buku-->
        <div class="layout-card-custom">

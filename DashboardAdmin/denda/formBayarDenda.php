@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION["signIn"]) ) {
-  header("Location: ../../sign/member/sign_in.php");
+  header("Location: ../../sign/admin/sign_in.php");
   exit;
 }
 require "../../config/config.php";
@@ -12,7 +12,7 @@ if(isset($_POST["bayar"]) ) {
   if(bayarDenda($_POST) > 0) {
     echo "<script>
     alert('Denda berhasil dibayar');
-    document.location.href = 'TransaksiDenda.php';
+    document.location.href = 'daftarDenda.php';
     </script>";
   }else {
     echo "<script>
@@ -47,7 +47,7 @@ WHERE pengembalian.id_pengembalian = $dendaSiswa");
           <img src="../../assets/logoNav.png" alt="logo" width="120px">
         </a>
         
-        <a class="btn btn-tertiary" href="../dashboardMember.php">Dashboard</a>
+        <a class="btn btn-tertiary" href="../dashboardAdmin.php">Dashboard</a>
       </div>
     </nav>
     

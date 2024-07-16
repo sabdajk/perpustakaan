@@ -23,6 +23,12 @@ if(isset($_POST["search"]) ) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
      <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
      <title>Member terdaftar</title>
+     <style>
+      .search-bar {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+     </style>
   </head>
   <body>
     <nav class="navbar fixed-top bg-body-tertiary shadow-sm">
@@ -37,12 +43,12 @@ if(isset($_POST["search"]) ) {
     
     <div class="p-4 mt-5">
       <!--search engine --->
-     <form action="" method="post" class="mt-5">
-       <div class="input-group d-flex justify-content-end mb-3">
-         <input class="border p-2 rounded rounded-end-0 bg-tertiary" type="text" name="keyword" id="keyword" placeholder="cari data member...">
-         <button class="border border-start-0 bg-light rounded rounded-start-0" type="submit" name="search"><i class="fa-solid fa-magnifying-glass"></i></button>
-       </div>
-      </form>
+      <form action="" method="post" class="mt-5 search-bar">
+      <div class="input-group">
+        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Cari judul atau kategori buku...">
+        <button class="btn btn-primary" type="submit" name="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </form>
       
       <caption>List of Member</caption>
       <div class="table-responsive mt-3">

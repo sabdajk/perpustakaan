@@ -90,7 +90,7 @@ function upload() {
   $namaFileBaru .= ".";
   $namaFileBaru .= $ekstensiGambar;
   
-  move_uploaded_file($tmpName, '../../imgDB/' . $namaFileBaru);
+  move_uploaded_file($tmpName, '../imgDB/' . $namaFileBaru);
   return $namaFileBaru;
 } 
 
@@ -222,10 +222,11 @@ function pinjamBuku($dataBuku) {
     }
   }
   // cek batas user meminjam buku berdasarkan nisn
-  $nisnResult = mysqli_query($connection, "SELECT nisn FROM peminjaman WHERE nisn = $nisn");
-  if(mysqli_fetch_assoc($nisnResult)) {
+  $cekJumlahPinjam = mysqli_query($connection, "SELECT COUNT(*) AS jumlah_pinjam FROM peminjaman WHERE nisn = $nisn");
+  $jumlahPinjam = mysqli_fetch_assoc($cekJumlahPinjam)['jumlah_pinjam'];
+  if($jumlahPinjam >= 3) {
     echo "<script>
-    alert('Anda sudah meminjam buku, Harap kembalikan dahulu buku yg anda pinjam!');
+    alert('Anda sudah mencapai batas maksimal peminjaman buku (3 buku)');
     </script>";
     return 0;
   }
@@ -301,7 +302,7 @@ function updateBookPopularity($idBuku) {
   mysqli_query($connection, $queryUpdatePopularity);
 }
 
-// Function to get popular books
+// Mendapatkan buku populer
 function getPopularBooks() {
   global $connection;
   $queryGetPopularBooks = "SELECT * FROM buku WHERE popularity > 5 ORDER BY popularity DESC LIMIT 10";
