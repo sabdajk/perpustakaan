@@ -11,20 +11,6 @@ $reviewKategori = queryReadData("SELECT * FROM buku WHERE kategori = '$review'")
 // Data kategori buku
 $kategori = queryReadData("SELECT * FROM kategori_buku"); 
 
-if(isset($_POST["update"]) ) {
-  
-  if(updateBuku($_POST) > 0) {
-    echo "<script>
-    alert('Data buku berhasil diupdate!');
-    document.location.href = 'daftarBuku.php';
-    </script>";
-  }else {
-    echo "<script>
-    alert('Data buku gagal diupdate!');
-    </script>";
-  }
-  
-}
 ?>
 
 <!DOCTYPE html>
@@ -33,10 +19,38 @@ if(isset($_POST["update"]) ) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-     <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
-     <title>Edit data buku || Admin</title>
+    <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Edit data buku || Admin</title>
   </head>
   <body>
+    <?php
+    if(isset($_POST["update"]) ) {
+  
+      if(updateBuku($_POST) > 0) {
+        echo "<script>
+        Swal.fire({
+          title: 'Sukses!',
+          text: 'Data buku berhasil diupdate!',
+          icon: 'success',
+          showConfirmButton: false
+        }).then(function() {
+          window.location.href = 'daftarBuku.php';
+        });
+        </script>";
+      } else {
+        echo "<script>
+        Swal.fire({
+          title: 'Oops!',
+          text: 'Data buku gagal diupdate!',
+          icon: 'error',
+          showConfirmButton: false
+        });
+        </script>";
+      }
+      
+    }
+    ?>
     <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
@@ -74,7 +88,7 @@ if(isset($_POST["update"]) ) {
 
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Id Buku</label>
-          <input type="text" class="form-control" name="id_buku" id="exampleFormControlInput1" placeholder="example inf01" value="<?= $reviewData["id_buku"]; ?>">
+          <input type="text" class="form-control" name="id_buku" id="exampleFormControlInput1" placeholder="example inf01" value="<?= $reviewData["id_buku"]; ?>" readonly>
         </div>
       </div>
     
@@ -128,7 +142,7 @@ if(isset($_POST["update"]) ) {
   
   <footer class="mt-5 shadow-lg bg-subtle p-3">
       <div class="container-fluid d-flex justify-content-between">
-      <p class="mt-2">Created by <span class="text-primary"> Mangandaralam Sakti</span> © 2023</p>
+      <p class="mt-2">Created by <span class="text-primary"> Kelompok 1 Teknik Industri</span> © 2024</p>
       <p class="mt-2">versi 1.0</p>
       </div>
     </footer>

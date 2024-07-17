@@ -14,32 +14,48 @@ INNER JOIN buku ON peminjaman.id_buku = buku.id_buku
 INNER JOIN member ON peminjaman.nisn = member.nisn
 WHERE peminjaman.id_peminjaman = $idPeminjaman");
 
-// Jika tombol submit kembalikan diklik
-if(isset($_POST["kembalikan"])) {
-    if(pengembalian($_POST) > 0) {
-        echo "<script>
-        alert('Terimakasih telah mengembalikan buku!');
-        window.location.href = '../dashboardMember.php';
-        </script>";
-        exit; 
-    } else {
-        echo "<script>
-        alert('Buku gagal dikembalikan');
-        </script>";
-    }
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
     <title>Form Pengembalian Buku || Member</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<?php 
+    // Jika tombol submit kembalikan diklik
+    if(isset($_POST["kembalikan"])) {
+        if(pengembalian($_POST) > 0) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses!',
+                    text: 'Terimakasih telah mengembalikan buku!',
+                    showConfirmButton: false,
+                    timer: 6000
+                }).then(function() {
+                    window.location.href = '../dashboardMember.php';
+                });
+            </script>";
+            exit; 
+        } else {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: 'Buku gagal dikembalikan!',
+                    showConfirmButton: false,
+                    timer: 6000
+                });
+            </script>";
+        }
+    }
+    ?>
 <nav class="navbar fixed-top bg-body-tertiary shadow-sm">
     <div class="container-fluid p-3">
         <a class="navbar-brand" href="#">

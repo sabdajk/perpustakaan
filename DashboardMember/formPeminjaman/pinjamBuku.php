@@ -15,15 +15,6 @@ $query = queryReadData("SELECT * FROM buku WHERE id_buku = '$idBuku'");
 $nisnSiswa = $_SESSION["member"]["nisn"];
 $dataSiswa = queryReadData("SELECT * FROM member WHERE nisn = $nisnSiswa");
 $admin = queryReadData("SELECT * FROM admin");
-
-// Peminjaman 
-if(isset($_POST["pinjam"])) {
-  if(pinjamBuku($_POST) > 0) {
-    echo "<script>alert('Buku berhasil dipinjam');</script>";
-  } else {
-    echo "<script>alert('Buku gagal dipinjam!');</script>";
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +24,7 @@ if(isset($_POST["pinjam"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Form pinjam Buku || Member</title>
   </head>
   <style>
@@ -44,6 +36,32 @@ if(isset($_POST["pinjam"])) {
     }
   </style>
   <body>
+    <?php
+      // Peminjaman 
+if(isset($_POST["pinjam"])) {
+  if(pinjamBuku($_POST) > 0) {
+    echo "<script>
+            Swal.fire({
+              icon: 'success',
+              title: 'Sukses!',
+              text: 'Buku berhasil dipinjam',
+              showConfirmButton: false,
+              timer: 6000
+            });
+          </script>";
+  } else {
+    echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'Buku gagal dipinjam!',
+              showConfirmButton: false,
+              timer: 6000
+            });
+          </script>";
+  }
+}
+    ?>
     <nav class="navbar fixed-top bg-body-tertiary shadow-sm">
       <div class="container-fluid p-3">
         <a class="navbar-brand" href="#">
@@ -189,7 +207,7 @@ if(isset($_POST["pinjam"])) {
 
     <footer class="shadow-lg bg-subtle p-3">
       <div class="container-fluid d-flex justify-content-between">
-        <p class="mt-2">Created by <span class="text-primary">Mangandaralam Sakti</span> © 2023</p>
+        <p class="mt-2">Created by <span class="text-primary">Kelompok 1 Teknik Industri</span> © 2024</p>
         <p class="mt-2">versi 1.0</p>
       </div>
     </footer>

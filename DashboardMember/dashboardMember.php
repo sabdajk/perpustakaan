@@ -66,7 +66,7 @@ $booksCloseToDueDate = getBooksCloseToDueDate($_SESSION['member']['nisn']);
     $dayOfMonth = date('d');
     // Mendapatkan bulan dalam format teks (e.g., Januari, Februari, ...)
     $month = date('F');
-    // Mendapatkan tahun dalam format 4 digit (e.g., 2023)
+    // Mendapatkan tahun dalam format 4 digit (e.g., 2024)
     $year = date('Y');
     ?>
 
@@ -116,7 +116,7 @@ $booksCloseToDueDate = getBooksCloseToDueDate($_SESSION['member']['nisn']);
 
 <footer class="shadow-lg bg-subtle p-3">
     <div class="container-fluid d-flex justify-content-between">
-        <p class="mt-2">dibuat oleh <span class="text-primary">Kelompok 1</span> Juli 2024</p>
+        <p class="mt-2">Created by <span class="text-primary">Kelompok 1 Teknik</span> © 2024</p>
         <p class="mt-2">22A</p>
     </div>
 </footer>

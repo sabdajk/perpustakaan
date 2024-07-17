@@ -47,6 +47,7 @@ if (isset($_POST["populer"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />  
   <title>Daftar Buku || Member</title>
   <style>
     .layout-card-custom {
@@ -109,32 +110,33 @@ if (isset($_POST["populer"])) {
 
     <!--Card buku-->
     <div class="layout-card-custom">
-      <?php foreach ($buku as $item) : ?>
-      <div class="card" style="width: 15rem;">
-        <img src="../../imgDB/<?= $item["cover"]; ?>" class="card-img-top" alt="coverBuku" height="250px">
-        <div class="card-body">
-          <h5 class="card-title"><?= $item["judul"]; ?></h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Kategori: <?= $item["kategori"]; ?></li>
-        </ul>
-        <div class="card-body">
-          <a class="btn btn-success" href="detailBuku.php?id=<?= $item["id_buku"]; ?>">Detail</a>
-        </div>
+  <?php foreach ($buku as $item) : ?>
+    <div class="card shadow-sm" style="width: 15rem;" data-aos="flip-left">
+      <img src="../../imgDB/<?= $item["cover"]; ?>" class="card-img-top" alt="coverBuku" height="250px">
+      <div class="card-body">
+        <h5 class="card-title"><?= $item["judul"]; ?></h5>
+        <p class="card-text">Kategori: <?= $item["kategori"]; ?></p>
+        <a href="detailBuku.php?id=<?= $item["id_buku"]; ?>" class="btn btn-success">Detail</a>
       </div>
-      <?php endforeach; ?>
     </div>
+  <?php endforeach; ?>
+</div>
+
 
   </div>
 
   <footer class="shadow-lg bg-subtle p-3">
     <div class="container-fluid d-flex justify-content-between">
-      <p class="mt-2">Created by <span class="text-primary">Mangandaralam Sakti</span> © 2023</p>
+      <p class="mt-2">Created by <span class="text-primary">Kelompok 1 Teknik Industri</span> © 2024</p>
       <p class="mt-2">versi 1.0</p>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 
 </html>

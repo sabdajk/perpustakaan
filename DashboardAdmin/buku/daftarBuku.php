@@ -15,9 +15,10 @@ if(isset($_POST["search"]) ) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-     <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
-     <title>Kelola buku || Admin</title>
+    <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
+    <title>Kelola buku || Admin</title>
   </head>
   <style>
     .layout-card-custom {
@@ -78,7 +79,7 @@ if(isset($_POST["search"]) ) {
         <div class="card-body">
           <a class="btn btn-success" href="updateBuku.php?idReview=<?= $item["id_buku"]; ?>" id="review">Edit</a>
           
-          <a class="btn btn-danger" href="deleteBuku.php?id=<?= $item["id_buku"]; ?>" onclick="return confirm('Yakin ingin menghapus data buku ? ');">Delete</a>
+          <button class="btn btn-danger delete-btn" data-id="<?= $item["id_buku"]; ?>">Delete</button>
           </div>
         </div>
        <?php endforeach; ?>
@@ -87,11 +88,34 @@ if(isset($_POST["search"]) ) {
       
       <footer class="shadow-lg bg-subtle p-3">
       <div class="container-fluid d-flex justify-content-between">
-      <p class="mt-2">Created by <span class="text-primary"> Mangandaralam Sakti</span> © 2023</p>
+      <p class="mt-2">Created by <span class="text-primary"> Kelompok 1 Teknik Industri</span> © 2024</p>
       <p class="mt-2">versi 1.0</p>
       </div>
       </footer>
     
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+  <script>
+  // Script untuk Sweet Alert
+  document.querySelectorAll('.delete-btn').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      const idBuku = this.getAttribute('data-id');
+      Swal.fire({
+        title: 'Yakin ingin menghapus data buku?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Redirect atau hapus data sesuai kebutuhan Anda
+          window.location.href = `deleteBuku.php?id=${idBuku}`;
+        }
+      });
+    });
+  });
+</script>  
+</body>
 </html>

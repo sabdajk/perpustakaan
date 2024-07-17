@@ -7,21 +7,6 @@ if(!isset($_SESSION["signIn"]) ) {
 }
 require "../../config/config.php";
 
-if(isset($_POST["bayar"]) ) {
-  
-  if(bayarDenda($_POST) > 0) {
-    echo "<script>
-    alert('Denda berhasil dibayar');
-    document.location.href = 'daftarDenda.php';
-    </script>";
-  }else {
-    echo "<script>
-    alert('Denda gagal dibayar');
-    </script>";
-  }
-  
-}
-
 $dendaSiswa = $_GET["id"];
 $query = queryReadData("SELECT pengembalian.id_pengembalian, buku.judul, member.nama, pengembalian.buku_kembali, pengembalian.keterlambatan, pengembalian.denda
 FROM pengembalian
@@ -38,9 +23,39 @@ WHERE pengembalian.id_pengembalian = $dendaSiswa");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
      <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <title>Form Bayar Denda || Member</title>
   </head>
   <body>
+    <?php
+    if(isset($_POST["bayar"]) ) {
+  
+      if(bayarDenda($_POST) > 0) {
+        echo "<script>
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Sukses!',
+                  text: 'Denda berhasil dibayar',
+                  showConfirmButton: false,
+                  timer: 6000
+                }).then(function() {
+                  window.location.href = 'daftarDenda.php';
+                });
+              </script>";
+      } else {
+        echo "<script>
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops!',
+                  text: 'Denda gagal dibayar!',
+                  showConfirmButton: false,
+                  timer: 6000
+                });
+              </script>";
+      }
+      
+    }
+    ?>
     <nav class="navbar fixed-top bg-body-tertiary shadow-sm">
       <div class="container-fluid p-3">
         <a class="navbar-brand" href="#">
@@ -91,7 +106,7 @@ WHERE pengembalian.id_pengembalian = $dendaSiswa");
     
     <footer class="fixed-bottom mt-5 shadow-lg bg-subtle p-3">
       <div class="container-fluid d-flex justify-content-between">
-      <p class="mt-2">Created by <span class="text-primary"> Mangandaralam Sakti</span> © 2023</p>
+      <p class="mt-2">Created by <span class="text-primary"> Kelompok 1 Teknik Industri</span> © 2024</p>
       <p class="mt-2">versi 1.0</p>
       </div>
   </footer>

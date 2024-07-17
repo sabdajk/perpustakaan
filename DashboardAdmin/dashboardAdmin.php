@@ -61,7 +61,7 @@ if(!isset($_SESSION["signIn"]) ) {
       $dayOfMonth = date('d');
       // Mendapatkan bulan dalam format teks (e.g., Januari, Februari, ...)
       $month = date('F');
-      // Mendapatkan tahun dalam format 4 digit (e.g., 2023)
+      // Mendapatkan tahun dalam format 4 digit (e.g., 2024)
       $year = date('Y');
       ?>
 
@@ -71,27 +71,6 @@ if(!isset($_SESSION["signIn"]) ) {
       
       <div class="mt-4 p-3">
 
-        <!-- <div class="row gap-2">
-        <div class="col bg-info p-5 rounded">
-          <a class="text-center text-decoration-none fs-2 text-light" href="member/member.php">Member</a>
-        </div>
-        <div class="col bg-success p-5 rounded">
-          <a class="text-center text-decoration-none fs-2 text-light" href="buku/daftarBuku.php">Buku</a>
-        </div>
-        </div>
-        <div class="row gap-2 mt-2">
-        <div class="col bg-warning p-5 rounded">
-          <a class="text-center text-decoration-none fs-2 text-light" href="peminjaman/peminjamanBuku.php">Peminjaman</a>
-        </div>
-        <div class="col bg-dark p-5 rounded">
-          <a class="text-center text-decoration-none fs-2 text-light" href="pengembalian/pengembalianBuku.php">Pengembalian</a>
-        </div>
-        </div>
-        <div class="row mt-2">
-        <div class="col bg-danger p-5 rounded">
-          <a class="text-center text-decoration-none fs-2 text-light" href="denda/daftarDenda.php">Denda</a>
-        </div>
-        </div> -->
 
         <div class="d-flex flex-wrap justify-content-center gap-2">
         <div class="cardImg">
@@ -129,7 +108,7 @@ if(!isset($_SESSION["signIn"]) ) {
     
     <footer class="shadow-lg bg-subtle p-3">
       <div class="container-fluid d-flex justify-content-between">
-      <p class="mt-2">Dibuat Oleh <span class="text-primary">kelompok 1</span>juli 2024</p>
+      <p class="mt-2">Created by <span class="text-primary">kelompok 1 Teknik Industri </span>© 2024</p>
       <p class="mt-2">22A</p>
       </div>
     </footer>

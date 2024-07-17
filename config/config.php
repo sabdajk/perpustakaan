@@ -36,12 +36,14 @@ function tambahBuku($dataBuku) {
     return 0;
   } 
   
-  $queryInsertDataBuku = "INSERT INTO buku VALUES('$cover', '$idBuku', '$kategoriBuku', '$judulBuku', '$pengarangBuku', '$penerbitBuku', '$tahunTerbit', $jumlahHalaman, '$deskripsiBuku')";
+  // Menyusun query dengan penamaan kolom
+  $queryInsertDataBuku = "INSERT INTO buku (cover, id_buku, kategori, judul, pengarang, penerbit, tahun_terbit, jumlah_halaman, buku_deskripsi) 
+                          VALUES ('$cover', '$idBuku', '$kategoriBuku', '$judulBuku', '$pengarangBuku', '$penerbitBuku', '$tahunTerbit', $jumlahHalaman, '$deskripsiBuku')";
   
   mysqli_query($connection, $queryInsertDataBuku);
   return mysqli_affected_rows($connection);
-  
-}       
+}
+
 
 // Function upload gambar 
 function upload() {
@@ -90,7 +92,7 @@ function upload() {
   $namaFileBaru .= ".";
   $namaFileBaru .= $ekstensiGambar;
   
-  move_uploaded_file($tmpName, '../imgDB/' . $namaFileBaru);
+  move_uploaded_file($tmpName, '../../imgDB/' . $namaFileBaru);
   return $namaFileBaru;
 } 
 
@@ -224,7 +226,8 @@ function pinjamBuku($dataBuku) {
   // cek batas user meminjam buku berdasarkan nisn
   $cekJumlahPinjam = mysqli_query($connection, "SELECT COUNT(*) AS jumlah_pinjam FROM peminjaman WHERE nisn = $nisn");
   $jumlahPinjam = mysqli_fetch_assoc($cekJumlahPinjam)['jumlah_pinjam'];
-  if($jumlahPinjam >= 3) {
+  // batas bisa diubah
+  if($jumlahPinjam >= 3) { 
     echo "<script>
     alert('Anda sudah mencapai batas maksimal peminjaman buku (3 buku)');
     </script>";

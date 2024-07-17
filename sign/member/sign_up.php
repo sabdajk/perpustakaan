@@ -1,21 +1,5 @@
 <?php 
 require "../../loginSystem/connect.php";
-if(isset($_POST["signUp"]) ) {
-  
-  if(signUp($_POST) > 0) {
-    echo "<script>
-    alert('Sign Up berhasil!')
-    </script>";
-  }else {
-    echo "<script>
-    alert('Sign Up gagal!')
-    </script>";
-  }
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-  
-}
 
 ?>
 <!DOCTYPE html>
@@ -24,10 +8,41 @@ ini_set('display_errors', 1);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-     <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
-     <title>Sign Up || Member</title>
+    <script src="https://kit.fontawesome.com/de8de52639.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Sign Up || Member</title>
     </head>
   <body>
+    <?php
+    if(isset($_POST["signUp"]) ) {
+  
+      if(signUp($_POST) > 0) {
+        echo "<script>
+        Swal.fire({
+                  icon: 'success',
+                  title: 'Sukses!',
+                  text: 'Sign Up berhasil',
+                  showConfirmButton: false,
+                  timer: 6000
+                });
+        </script>";
+      }else {
+        echo "<script>
+        Swal.fire({
+                  icon: 'error',
+                  title: 'Oops!',
+                  text: 'Sign Up gagal!',
+                  showConfirmButton: false,
+                  timer: 6000
+                });
+        </script>";
+      }
+    
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+      
+    }
+    ?>
   <div class="container">
     <div class="card p-2 mt-5">
       <div class="position-absolute top-0 start-50 translate-middle">
