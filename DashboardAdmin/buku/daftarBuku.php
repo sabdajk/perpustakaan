@@ -36,7 +36,7 @@ if(isset($_POST["search"]) ) {
   <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="../../assets/logoNav.png" alt="logo" width="120px">
+      <img src="../../assets/perpus.png" alt="logo" width="120px">
         </a>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

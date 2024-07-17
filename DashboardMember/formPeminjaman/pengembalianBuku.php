@@ -59,7 +59,7 @@ WHERE peminjaman.id_peminjaman = $idPeminjaman");
 <nav class="navbar fixed-top bg-body-tertiary shadow-sm">
     <div class="container-fluid p-3">
         <a class="navbar-brand" href="#">
-            <img src="../../assets/logoNav.png" alt="logo" width="120px">
+            <img src="../../assets/perpus.png" alt="logo" width="120px">
         </a>
         <a class="btn btn-tertiary" href="../dashboardMember.php">Dashboard</a>
     </div>
